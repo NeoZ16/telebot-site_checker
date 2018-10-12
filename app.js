@@ -3,6 +3,7 @@ const resultLink = process.env.resultLink;
 const port = process.env.PORT || 5000;
 const TeleBot = require('telebot');
 const request = require('request');
+const http = require('http');
 const interval = 1000*60*process.env.interval;
 const bot = new TeleBot(TELEGRAM_BOT_TOKEN);
 let checkingUpdates;
