@@ -22,6 +22,16 @@ bot.on('sticker', (msg) => {
     return msg.reply.sticker('http://i.imgur.com/VRYdhuD.png', { asReply: true });
 });
 
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, function (){
+  console.log(`Server running at ${port}`);
+});
+
 bot.start();
 
 return new Promise(function (resolve, reject)
@@ -36,16 +46,6 @@ return new Promise(function (resolve, reject)
             }
         });
     });
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, function (){
-  console.log(`Server running at ${port}`);
-});
 
 function getUpdates(resultLink, msg){
     //msg.reply.text(resultLink);
