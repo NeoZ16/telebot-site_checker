@@ -24,6 +24,10 @@ bot.on('sticker', (msg) => {
 
 bot.start();
 
+server.listen(config.port, function () {
+  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+});
+
 function getUpdates(resultLink, msg){
     //msg.reply.text(resultLink);
     return new Promise(function (resolve, reject)
