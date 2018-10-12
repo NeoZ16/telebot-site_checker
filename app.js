@@ -43,7 +43,7 @@ const server = http.createServer((req, res) => {
   res.end('Hello World\n');
 });
 
-server.listen(port, function () => {
+server.listen(port, function (){
   console.log(`Server running at ${port}`);
 });
 
