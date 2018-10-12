@@ -21,9 +21,14 @@ bot.on(['/start'], (msg) => {
 });
 
 bot.on(['/stop'], (msg) => {
-    console.log('request stopped');
-    msg.reply.text('Bot will stop checking');
-    clearInterval(checkingUpdates, msg);
+    if(checkingUpdates!=null) {
+        console.log('request stopped');
+        msg.reply.text('Bot will stop checking');
+        clearInterval(checkingUpdates);
+        checkingUpdates = null;
+    }else{
+        msg.reply.text('Bot does not know any job like that.')
+    }
 });
 
 bot.on('sticker', (msg) => {
