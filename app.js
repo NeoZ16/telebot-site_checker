@@ -8,14 +8,20 @@ const interval = 1000*60*process.env.interval;
 const bot = new TeleBot(TELEGRAM_BOT_TOKEN);
 let checkingUpdates;
 bot.on(['/start'], (msg) => {
-    msg.reply.text('Bot will now check every '+interval/1000/60+' minutes');
-    getUpdates(resultLink, msg);
-    checkingUpdates = setInterval(()=>{
+    if(checkingUpdates == null) {
+        console.log('request started');
+        msg.reply.text('Bot will now check every ' + interval / 1000 / 60 + ' minutes.');
         getUpdates(resultLink, msg);
-    }, interval);
+        checkingUpdates = setInterval(() => {
+            getUpdates(resultLink, msg);
+        }, interval);
+    }else{
+        msg.reply.text('Already started.\nBot checks every ' + interval / 1000 / 60 + ' minutes.');
+    }
 });
 
 bot.on(['/stop'], (msg) => {
+    console.log('request stopped');
     msg.reply.text('Bot will stop checking');
     clearInterval(checkingUpdates, msg);
 });
@@ -41,8 +47,6 @@ function getUpdates(resultLink, msg){
     return new Promise(function (resolve, reject)
     {
         request(resultLink, function (error, response, body) {
-            console.log(error);
-            console.log(typeof (response.statusCode));
             if(response.statusCode>= 400 && response.statusCode < 500){
                 msg.reply.text('No Update // StatusCode'+response.statusCode);
             }else if(response.statusCode >= 200 && response.statusCode < 300){
