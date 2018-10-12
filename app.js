@@ -37,6 +37,16 @@ return new Promise(function (resolve, reject)
         });
     });
 
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port,() => {
+  console.log(`Server running at ${port}`);
+});
+
 function getUpdates(resultLink, msg){
     //msg.reply.text(resultLink);
     return new Promise(function (resolve, reject)
