@@ -1,7 +1,7 @@
 {
-  "name": "coolnodeapp",
-  "version": "1.0.0",
-  "description": "node app ",
+  "name": "telebot-site_checker",
+  "version": "0.9.0",
+  "description": "telegram bot that checks on sites in a given interval",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "",
+  "author": "neoz16",
   "license": "ISC",
   "dependencies": {
     "telebot": "1.2.6",

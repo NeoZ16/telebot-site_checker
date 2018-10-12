@@ -9,6 +9,7 @@ const bot = new TeleBot(TELEGRAM_BOT_TOKEN);
 let checkingUpdates;
 bot.on(['/start'], (msg) => {
     msg.reply.text('Bot will now check every '+interval/1000/60+' minutes');
+    getUpdates(resultLink, msg);
     checkingUpdates = setInterval(()=>{
         getUpdates(resultLink, msg);
     }, interval);
@@ -34,19 +35,6 @@ server.listen(port, function (){
 });
 
 bot.start();
-
-return new Promise(function (resolve, reject)
-    {
-        request(resultLink, function (error, response, body) {
-            console.log(error);
-            console.log(typeof (response.statusCode));
-            if(response.statusCode>= 400 && response.statusCode < 500){
-                console.log('No Update // StatusCode'+response.statusCode);
-            }else if(response.statusCode >= 200 && response.statusCode < 300){
-                console.log('Update at Url\n'+resultLink);
-            }
-        });
-    });
 
 function getUpdates(resultLink, msg){
     //msg.reply.text(resultLink);
