@@ -1,5 +1,6 @@
 const TELEGRAM_BOT_TOKEN = process.env.tel_bot_key;
 const resultLink = process.env.resultLink;
+const port = process.env.PORT || 5000;
 const TeleBot = require('telebot');
 const request = require('request');
 const interval = 1000*60*process.env.interval;
