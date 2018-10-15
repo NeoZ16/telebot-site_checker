@@ -1,3 +1,4 @@
 #Project Files
 .idea
 node_modules
+.env
