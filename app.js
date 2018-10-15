@@ -7,7 +7,11 @@ const http = require('http');
 const interval = 1000*60*process.env.interval;
 const bot = new TeleBot(TELEGRAM_BOT_TOKEN);
 let checkingUpdates;
-bot.on(['/start'], (msg) => {
+bot.on(/^\/start (.+)$/, (msg, props) => {
+    console.log(props);
+    for(let i = 0; i<props.match.length; i++){
+        msg.reply.text(props.match[i]);
+    }
     if(checkingUpdates == null) {
         console.log('request started');
         msg.reply.text('Bot will now check every ' + interval / 1000 / 60 + ' minutes.');
